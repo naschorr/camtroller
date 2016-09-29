@@ -21,7 +21,7 @@ BCM = "bcm"
 
 ## Defaults
 FULL_REV_TIME = 10	# Time to complete full revolution (ideally)
-DIR = 1				# 1 for CW, -1 for CCW
+DIR = 1			# 1 for CW, -1 for CCW
 PIN_MODE = BOARD 	# Default pin mode identifier (not the actual pin mode)
 PITCH_PINS = (40, 38, 36, 32)
 YAW_PINS = (37, 35, 33, 31)
@@ -103,8 +103,8 @@ def init(pin_mode, yaw_pins, pitch_pins):
 
 
 @click.command()
-@click.option('--yaw', '-y', type=float, help='Number of degrees to yaw the camera.')
-@click.option('--pitch', '-p', type=float, help='Number of degrees to pitch the camera.')
+@click.option('--yaw', '-y', type=float, help='Number of degrees to yaw the camera left (or right if negative).')
+@click.option('--pitch', '-p', type=float, help='Number of degrees to pitch the camera up (or down if negative).')
 @click.option('--pin-mode', default=PIN_MODE, type=click.Choice([BOARD, BCM]), help='Selects the pin selection mode. Defaults to {0}.'.format(PIN_MODE))
 @click.option('--yaw-pins', default=YAW_PINS, type=(int, int, int, int), help='Pins to control the yaw stepper. Defaults to {0}.'.format(YAW_PINS))
 @click.option('--pitch-pins', default=PITCH_PINS, type=(int, int, int, int), help='Pins to control the pitch stepper. Defaults to {0}.'.format(PITCH_PINS))
@@ -119,6 +119,8 @@ def main(yaw, pitch, pin_mode, yaw_pins, pitch_pins):
 			yawStepper.stepDegrees(yaw)
 		elif(pitch):
 			pitchStepper.stepDegrees(pitch)
+		else:
+			print("No yaw or pitch argument supplied.")
 	except KeyboardInterrupt as ki:
 		printErr("Interrupt detected. Going to clean up the GPIO and exit.", ki)
 	finally:
