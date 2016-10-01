@@ -1,0 +1,20 @@
+  - action: webcampitchup
+    async: true
+    command: ./home/pi/scripts/camtroller/camtroller.py -p 10
+    confirm: false
+    name: Pitch Webcam Up
+  - action: webcampitchdown
+    async: true
+    command: ./home/pi/scripts/camtroller/camtroller.py -p -10
+    confirm: false
+    name: Pitch Webcam Down
+  - action: webcamyawleft
+    async: true
+    command: ./home/pi/scripts/camtroller/camtroller.py -y 10
+    confirm: false
+    name: Yaw Webcam Left
+  - action: webcamyawright
+    async: true
+    command: ./home/pi/scripts/camtroller/camtroller.py -y -10
+    confirm: false
+    name: Yaw Webcam Right
