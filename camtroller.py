@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from __future__ import print_function
+from __future__ import print_function, division
 
 def printErr(desc, error):
 	print('{0} Error: "{1}"'.format(desc, error))
@@ -36,7 +36,7 @@ class StepperController:
 					[0,0,1,0],
 					[0,0,1,1],
 					[0,0,0,1]]
-	WAIT_TIME = float(FULL_REV_TIME)/STEPS_PER_REV
+	WAIT_TIME = FULL_REV_TIME/STEPS_PER_REV
 
 	def __init__(self, pins):
 		self.thisPhase = 0
